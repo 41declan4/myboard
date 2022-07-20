@@ -1,4 +1,6 @@
 <%@ page language = "java" contentType = "text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
 <html lang="en">
@@ -17,6 +19,11 @@
 
         <title>:: 메인페이지 ::</title>
     </head>
+
+    <sec:authorize access="isAuthenticated()">
+        <sec:authentication property="principal" var="principal" />
+    </sec:authorize>
+
     <body>
         
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -31,12 +38,20 @@
                     <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">게시판 쓰기</a>
+                    <a class="nav-link" href="/board/writeForm">게시판 쓰기</a>
                 </li>
                 </ul>
                 <div class="text-right">
-                    <a href="/user/loginForm" class="btn btn-primary">로그인</a>
-                    <a href="/user/joinForm" class="btn btn-primary">회원가입</a>
+                    <c:choose>
+                        <c:when test="${empty principal}">
+                            <a href="/auth/loginForm" class="btn btn-primary">로그인</a>
+                            <a href="/auth/joinForm" class="btn btn-primary">회원가입</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/user/userForm" class="btn btn-primary">회원정보</a>
+                            <a href="/logout" class="btn btn-primary">로그아웃</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </nav>
