@@ -17,8 +17,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional(readOnly = true)
-    public Page<Board> boardList(Pageable pageable) {
-        return boardRepository.findAll(pageable);
+    public Page<Board> boardList(String title, String content, Pageable pageable) {
+        return boardRepository.findByTitleContainingOrContentContaining(title, content, pageable);
     }
 
     @Transactional

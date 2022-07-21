@@ -21,7 +21,7 @@
                                     <div class="col-12">
                                         <div class="row no-gutters">
                                             <div class="col-lg-11 col-md-6 col-sm-12 p-0">
-                                                <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                                                <input type="text" placeholder="Search..." class="form-control" id="searchText" name="searchText" value="${param.searchText}">
                                             </div>
                                             <div class="col-lg-1 col-md-3 col-sm-12 p-0">
                                                 <button type="submit" class="btn btn-base">
@@ -50,7 +50,7 @@
                     <c:forEach var="board" items="${boards}">
                         <tr>
                             <td><c:out value="${board.id}" /></td>
-                            <td><c:out value="${board.title}" /></td>
+                            <td><a href="#"><c:out value="${board.title}" /></a></td>
                             <td><c:out value="${board.user.username}" /></td>
                             <td><fmt:formatDate value="${board.createDate}" pattern="yyyy-MM-dd" /></td>
                         </tr>
@@ -65,12 +65,12 @@
                     <c:choose>
                         <c:when test="${number == 0}">
                             <li class="page-item disabled">
-                                <a class="page-link" href="?page=${number - 1}">Previous</a>
+                                <a class="page-link" href="?page=${number - 1}&searchText=${param.searchText}">Previous</a>
                             </li>
                         </c:when>
                         <c:otherwise>
                             <li class="page-item">
-                                <a class="page-link" href="?page=${number - 1}">Previous</a>
+                                <a class="page-link" href="?page=${number - 1}&searchText=${param.searchText}">Previous</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
@@ -79,12 +79,12 @@
                         <c:choose>
                             <c:when test="${page == number}">
                                 <li class="page-item disabled">
-                                    <a class="page-link" href="?page=${page}">${page + 1}</a>
+                                    <a class="page-link" href="?page=${page}&searchText=${param.searchText}">${page + 1}</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="page-item">
-                                    <a class="page-link" href="?page=${page}">${page + 1}</a>
+                                    <a class="page-link" href="?page=${page}&searchText=${param.searchText}">${page + 1}</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -94,12 +94,12 @@
                     <c:choose>
                         <c:when test="${hasNext}">
                             <li class="page-item">
-                                <a class="page-link" href="?page=${number + 1}">Next</a>
+                                <a class="page-link" href="?page=${number + 1}&searchText=${param.searchText}">Next</a>
                             </li>
                         </c:when>
                         <c:otherwise>
                             <li class="page-item disabled">
-                                <a class="page-link" href="?page=${number + 1}">Next</a>
+                                <a class="page-link" href="?page=${number + 1}&searchText=${param.searchText}">Next</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
