@@ -11,6 +11,15 @@ let index = {
         $('#btn-delete').on('click', () => {
             this.boardDelete();
         })
+
+        $('#btn-reply-save').on('click', () => {
+            this.replySave();
+        })
+
+        // $('#btn-reply-delete').on('click', () => {
+        //     this.replyDelete();
+        // })
+
     },
 
     save: function() {
@@ -73,6 +82,53 @@ let index = {
         }).done(res => {
             alert('글 삭제 완료되었습니다.'),
             location.href = '/';
+        }).fail(error => {
+            alert(JSON.stringify(error));
+        })
+
+    },
+
+    replySave: function() {
+        
+        let data = {
+            userId: $('#userId').val(),
+            boardId: $('#boardId').val(),
+            comment: $('#comment').val()
+        }
+
+        console.log(data);
+
+        $.ajax({
+            type: 'POST',
+            url: `/api/board/${data.boardId}/reply`,
+            data: JSON.stringify(data),
+            contentType: 'application/json; utf-8',
+            dataType: 'json'
+        }).done(res => {
+            alert('댓글 등록 완료');
+            location.href = `/board/${data.boardId}`;
+        }).fail(error => {
+            alert(JSON.stringify(error));
+        })
+        
+    },
+
+    replyDelete: function(boardId, replyId) {
+
+        // let data = {
+        //     boardId: $('#boardId').val(),
+        //     replyId: $('#replyId').val()
+        // }
+
+        // console.log(data);
+
+        $.ajax({
+            type: 'DELETE',
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            dataType: 'json'
+        }).done(res => {
+            alert('댓글 삭제 완료');
+            location.href = `/board/${boardId}`;
         }).fail(error => {
             alert(JSON.stringify(error));
         })

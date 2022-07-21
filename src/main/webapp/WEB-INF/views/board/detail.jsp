@@ -37,12 +37,14 @@
         </div>
 
         <div class="card mt-5">
-            <form action="">
+            <input type="hidden" id="userId" value="${principal.user.id}" />
+            <input type="hidden" id="boardId" value="${board.id}" />
+            <form>
                 <div class="card-body">
-                    <textarea class="form-control" rows="1"></textarea>
+                    <textarea id="comment" class="form-control" rows="1"></textarea>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">등록</button>
+                    <button id="btn-reply-save" class="btn btn-primary" type="button">등록</button>
                 </div>
             </form>
         </div>
@@ -50,11 +52,20 @@
         <div class="card mt-3">
             <div class="card-header">댓글 리스트</div>
             <ul class="list-group">
-                <li class="list-group-item">안녕1</li>
-                <li class="list-group-item">안녕2</li>
-                <li class="list-group-item">안녕3</li>
+                <c:forEach var="reply" items="${board.replys}">
+                    <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
+                        <div>${reply.comment}</div>
+                        <div class="d-flex">
+                            <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+                            <c:if test="${reply.user.id eq principal.user.id}">
+                            <button onclick="index.replyDelete(${board.id}, ${reply.id})" class="btn-danger" >삭제</button>
+                        </c:if>
+                        </div>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
+        
     </main>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
