@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @RequiredArgsConstructor
 @Service
@@ -24,5 +25,39 @@ public class BoardService {
     @Transactional
     public void boardWrite(Board toEntity) {
         boardRepository.save(toEntity);
+    }
+
+
+    @Transactional(readOnly = true)
+    public Board boardFindById(Long id) {
+        return boardRepository.findById(id).orElseThrow(new Supplier<IllegalArgumentException>() {
+            @Override
+            public IllegalArgumentException get() {
+                return new IllegalArgumentException("해당 아이디는 존재하지 않습니다. : " + id);
+            }
+        });
+
+    }
+
+    @Transactional
+    public void boardUpdate(Board toEntity) {
+
+        Board board = boardRepository.findById(toEntity.getId()).orElseThrow(new Supplier<IllegalArgumentException>() {
+            @Override
+            public IllegalArgumentException get() {
+                return new IllegalArgumentException("해당 아이디는 존재하지 않습니다. : " + toEntity.getId());
+            }
+        });
+
+        board.setTitle(toEntity.getTitle());
+        board.setContent(toEntity.getContent());
+
+    }
+
+
+    @Transactional
+    public void boardDelete(Long id) {
+
+        boardRepository.deleteById(id);
     }
 }

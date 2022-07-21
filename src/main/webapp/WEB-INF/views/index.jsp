@@ -43,14 +43,14 @@
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
-                    <th scope="col">등록날짜</th>
+                    <th scope="col">작성일</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="board" items="${boards}">
                         <tr>
                             <td><c:out value="${board.id}" /></td>
-                            <td><a href="#"><c:out value="${board.title}" /></a></td>
+                            <td><a href="/board/${board.id}"><c:out value="${board.title}" /></a></td>
                             <td><c:out value="${board.user.username}" /></td>
                             <td><fmt:formatDate value="${board.createDate}" pattern="yyyy-MM-dd" /></td>
                         </tr>
