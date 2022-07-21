@@ -1,5 +1,6 @@
 package com.declan.myboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,7 +36,9 @@ public class Board {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"board"})
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id desc")
     private List<Reply> replys;
 
     @CreationTimestamp

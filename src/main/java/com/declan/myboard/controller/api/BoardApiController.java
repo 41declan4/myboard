@@ -5,13 +5,16 @@ import com.declan.myboard.domain.Board;
 import com.declan.myboard.dto.BoardWriteDto;
 import com.declan.myboard.dto.BoardupdateDto;
 import com.declan.myboard.dto.ResponseDto;
+import com.declan.myboard.repository.BoardRepository;
 import com.declan.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

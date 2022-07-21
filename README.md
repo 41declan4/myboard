@@ -27,14 +27,14 @@
 - 로그인 처리 : Security를 이용해서 로그인 처리 작업 로그인페이지 Security에 만들어져있는 프론트단을 사용하지 않고 WebSecurityConfigurerAdapter를 상속 받아 configurer 오보라이딩해서 권환 및 로그인 페이지 로그인 기능 처리 등 한번에 처리
 
 # 구현한 API 기능
-- 게시글 추가(C) : http://api/writeProc -> JSON 타입 V:K : {title: "제목", content: "내용"}
-- 게시글 보기(R) : 
-- 게시글 수정(U) : http://api/updateProc/{id} -> {id} : 수정하고싶은 게시글 번호, JSON 타입 V:K : {title: "제목", content: "내용"}
-- 게시글 삭제(D) : http://api/delete/{id} -> {id} : 지우고싶은 게시글 번호
+- 게시글 추가(POST) : 
+- 게시글 보기(GET) : 
+- 게시글 수정(PUT) : 
+- 게시글 삭제(DELETE) : 
 - 댓글 보기 :  
-- 댓글 작성 : http://api/board/{boardId}/reply -> JSON 타입 V:K : {comment: "댓글 내용"}
-- 댓글 삭제 : http://api/board/{boardId}/reply/{replyId} ->  {boardId} : 어떤 게시글 페이지에 적속할 게시글 아이디, {replyId} : 게시글 중 삭제하고 싶은 댓글 번호
-- 회원가입 : http://auth/joinProc -> JSON 타입 V:K : {username: "회원가입 할 아이디", password: "회원가입 할 비밀번호", email="회원가입 할 이메일"}
+- 댓글 작성 : 
+- 댓글 삭제 : 
+- 회원가입 : 
 - 로그인 처리 : 
 
 # Database 테이블 구현(ORM 방식)
@@ -48,4 +48,6 @@
 - 여기서 중요한점은 연관관계의 주인을 정확히 해줘야한다. 테이블의 하나의 row는 하나의 값만 가질 수 있기 때문에 board테이블의 reply은 연관관계의 주인이 되면 안되므로 mappedBy를 지정해줘야한다
 - 내가 작업한 게시판 상세페이지에서는 댓글을 지연로딩 할 이유가없으므로 지연로딩(LAZY) 보다는 즉시로딩(EAGER)을 사용했다.
 - OneToMany의 경우 default로 FetchType이 LAZY이기때문에 EAGER로 변경해줬다.
+- 연관관계로인한 무한참조 방지하기 위해 JsonIgnoreProperties를 이용했다.
+- board에도 reply을 맵핑하고있고 reply도 board를 맵핑하고있어서 계속해서 맵핑이 이뤄지고 있다 그것을 방지하기 위해 Board 테이블 쪽에서 reply을 딱 한번만 호출 한다.
 
