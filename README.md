@@ -1,4 +1,10 @@
 # 게시판 (CRUD, 로그인, 회원가입, 댓글) 만들기
+- 전체 코드 다운로드 후 알집 풀고 인텔리제이 or STS로 파일 실행
+- src -> main -> resources -> application.yml
+- databases: url: jdbc:mysql://localhost:3306/board?serverTimezone=Asia/Seoul
+- MySQL에 board스키마 생성 후 
+- jpa: ddl-auto: update -> create로 변경 후 프로그램 실행
+- 실핼 후 ddl-auto: update로 변경 필수(create일 경우 계속 데이터베이스 리셋)
 
 # 개발에 사용한 기술
 - IDE(통합개발 환경): IntelliJ(무료버전), VSCode, MySQL(workbench)
