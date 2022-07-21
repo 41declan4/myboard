@@ -17,6 +17,13 @@
         <link href="/css/starter-template.css" rel="stylesheet">
         <link href="/css/sticky-footer.css" rel="stylesheet">
 
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+        <!-- Summernote API template -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.js"></script>
+
         <title>:: 메인페이지 ::</title>
     </head>
 
@@ -38,7 +45,7 @@
                     <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/board/writeForm">게시판 쓰기</a>
+                    <a class="nav-link" href="/board/write">게시판 쓰기</a>
                 </li>
                 </ul>
                 <div class="text-right">

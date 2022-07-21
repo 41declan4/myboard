@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/auth/LoginForm")
+                .loginPage("/auth/loginForm")
                 .loginProcessingUrl("/auth/loginProc")
                 .defaultSuccessUrl("/")
                 .and()

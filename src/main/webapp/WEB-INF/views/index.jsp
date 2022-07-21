@@ -1,3 +1,8 @@
+<%@ page language = "java" contentType = "text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
         <main role="main" class="container">
@@ -35,45 +40,71 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">등록날짜</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
+                    <c:forEach var="board" items="${boards}">
+                        <tr>
+                            <td><c:out value="${board.id}" /></td>
+                            <td><c:out value="${board.title}" /></td>
+                            <td><c:out value="${board.user.username}" /></td>
+                            <td><fmt:formatDate value="${board.createDate}" pattern="yyyy-MM-dd" /></td>
+                        </tr>
+                    </c:forEach>
+                    
                 </tbody>
             </table>
 
+            <!-- <div>Showing ${number+1} of ${size+1} of ${totalElements}</div> -->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                    </li>
+                    <c:choose>
+                        <c:when test="${number == 0}">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="?page=${number - 1}">Previous</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=${number - 1}">Previous</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    
+                    <c:forEach begin="0" end="${totalPages - 1}" var="page">
+                        <c:choose>
+                            <c:when test="${page == number}">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="?page=${page}">${page + 1}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=${page}">${page + 1}</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${hasNext}">
+                            <li class="page-item">
+                                <a class="page-link" href="?page=${number + 1}">Next</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="?page=${number + 1}">Next</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    
                 </ul>
             </nav>
 
