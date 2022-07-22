@@ -27,15 +27,24 @@
 - 로그인 처리 : Security를 이용해서 로그인 처리 작업 로그인페이지 Security에 만들어져있는 프론트단을 사용하지 않고 WebSecurityConfigurerAdapter를 상속 받아 configurer 오보라이딩해서 권환 및 로그인 페이지 로그인 기능 처리 등 한번에 처리
 
 # 구현한 API 기능
-- 게시글 추가(POST) : 
-- 게시글 보기(GET) : 
-- 게시글 수정(PUT) : 
-- 게시글 삭제(DELETE) : 
-- 댓글 보기 :  
-- 댓글 작성 : 
-- 댓글 삭제 : 
-- 회원가입 : 
-- 로그인 처리 : 
+- 게시글 추가(POST) : http://localhost:8888/dummy/api/user/{userId}/delete [JSON 파일로 보낼 것] title, content 입력하세요.
+- 게시글 전체 보기(GET) : http://localhost:8888/dummy/api/board/list
+- 게시글 아이디로 찾기 (GET) : http://localhost:8888/dummy/api/board/{boardId}
+- 게시글 제목 검색 전체보기(GET) : http://localhost:8888/dummy/api/boards/title?searchTitle=입력하세요.
+- 게시글 내용 검색 전체보기(GET) : http://localhost:8888/dummy/api/boards/content?searchContent=입력하세요.
+- 게시글 페이지 처리 및 제목 내용 통합 검색 전체 보기(GET) : http://localhost:8888/dummy/api/boards?page=0&searchText=입력하세요.
+- 게시글 수정(PUT) :
+- 게시글 삭제(DELETE) :
+
+- 댓글 보기 :
+- 댓글 작성 : http://localhost:8888/dummy/api/user/{userId}/board/{boardId}/reply/save [JSON 파일로 보낼 것] comment 입력하세요.
+- 댓글 삭제 : http://localhost:8888/dummy/api/board/{boardId}/reply/{replyId}/delete
+
+- 회원가입 유저 전체 보기 : (GET) : http://localhost:8888/dummy/api/user/list
+- 회원가입 유저 회원아이디로 찾기 : (GET) : - 회원가입 유저 전체 보기 : (GET) : http://localhost:8888/dummy/api/user?username=회원아이디 입력하세요.
+- 회원가입 (POST) : http://localhost:8888/dummy/api/user/signin [JSON 파일로 보낼 것] username, password, email 입력하세요.
+- 회원수정 (PUT) :  http://localhost:8888/dummy/api/user/{userId}/update [JSON 파일로 보낼 것] password, email 입력하세요.
+- 회원삭제 (DELETE) :  http://localhost:8888/dummy/api/user/{userId}/delete
 
 # Database 테이블 구현(ORM 방식)
 - User : Long id, String username, String password, String email, String role, Timestamp createDate
