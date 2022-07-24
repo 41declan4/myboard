@@ -74,6 +74,31 @@
                             </li>
                         </c:otherwise>
                     </c:choose>
+
+                    <!-- <c:choose>
+                        <c:when test="${totalPages == 1}">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="?page=${page}&searchText=${param.searchText}">${page + 1}</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach begin="0" end="${totalPages - 1}" var="page">
+                                <c:choose>
+                                    <c:when test="${page == number}">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="?page=${page}&searchText=${param.searchText}">${page + 1}</a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page=${page}&searchText=${param.searchText}">${page + 1}</a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                                
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose> -->
                     
                     <c:forEach begin="0" end="${totalPages - 1}" var="page">
                         <c:choose>
@@ -90,6 +115,7 @@
                         </c:choose>
                         
                     </c:forEach>
+
 
                     <c:choose>
                         <c:when test="${hasNext}">

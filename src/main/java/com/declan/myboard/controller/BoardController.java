@@ -29,7 +29,13 @@ public class BoardController {
 
         model.addAttribute("boards", boards.getContent());
         model.addAttribute("number", boards.getNumber());
-        model.addAttribute("totalPages", boards.getTotalPages());
+
+        if (boards.getTotalPages() == 0) {
+            model.addAttribute("totalPages", 1);
+        } else {
+            model.addAttribute("totalPages", boards.getTotalPages());
+        }
+
         model.addAttribute("totalElements", boards.getTotalElements());
         model.addAttribute("size", boards.getSize());
         model.addAttribute("isFirst", boards.isFirst());

@@ -33,8 +33,8 @@
 - 게시글 제목 검색 전체보기(GET) : http://localhost:8888/dummy/api/boards/title?searchTitle=입력하세요.
 - 게시글 내용 검색 전체보기(GET) : http://localhost:8888/dummy/api/boards/content?searchContent=입력하세요.
 - 게시글 페이지 처리 및 제목 내용 통합 검색 전체 보기(GET) : http://localhost:8888/dummy/api/boards?page=0&searchText=입력하세요.
-- 게시글 수정(PUT) :
-- 게시글 삭제(DELETE) :
+- 게시글 수정(PUT) : http://localhost:8888/dummy/api/board/{boardId} [JSON 파일로 보낼 것] title, content 입력하세요. 수정하고싶은 boardId를 적어주세요.
+- 게시글 삭제(DELETE) : http://localhost:8888/dummy/api/board/{boardId} 삭제하고싶은 boardId를 적어주세요.
 
 - 댓글 보기 :
 - 댓글 작성 : http://localhost:8888/dummy/api/user/{userId}/board/{boardId}/reply/save [JSON 파일로 보낼 것] comment 입력하세요.
