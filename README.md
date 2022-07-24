@@ -24,6 +24,7 @@
 - 댓글 작성 : repository(reply) save를 이용해서 게시글 작성 기능 작업 완료 
 - 댓글 삭제 : PathVariable를 통해 deleteById로 해당 게시글의 댓글 삭제 기능 완료
 - 회원가입 : @RequestBody를 통해 Json타입으로 회원가입 처리 완료 javascript의 Ajax 기술 사용, Security를 이용한 로그인해야 되기때문에 비밀번호는 암호화가 걸려야해서 BCryptPasswordEncoder를 통한 비밀번호 암호화 작업 기능 완료
+- 회원수정 : 해당 수정 할 아이디를 찾아 영속화 시킨 후 Transactional을 통한 더티채킹 후 기존 토큰값을 변경해주지 않으면 수정 값이 프론트화면에서 바로 적용되지 않고 DB만 수정되어서 문제가 있었지만 autenticationManager에서 토큰 값을 유저네임과 패스워드를 받아 수정해줌으로써 변경 후 바로 변경 값 노출 완료
 - 로그인 처리 : Security를 이용해서 로그인 처리 작업 로그인페이지 Security에 만들어져있는 프론트단을 사용하지 않고 WebSecurityConfigurerAdapter를 상속 받아 configurer 오보라이딩해서 권환 및 로그인 페이지 로그인 기능 처리 등 한번에 처리
 
 # 구현한 API 기능
